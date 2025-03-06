@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:xe  # URL de conexión a Oracle (XE es la versión Express)
+    username: tu_usuario  # Usuario de la base de datos
+    password: tu_contraseña  # Contraseña de la base de datos
+    driver-class-name: oracle.jdbc.OracleDriver  # Driver JDBC para Oracle
+
+  jpa:
+    database-platform: org.hibernate.dialect.Oracle12cDialect  # Dialecto de Oracle para Hibernate
+    hibernate:
+      ddl-auto: update  # "update" permite modificar tablas automáticamente (cámbialo a "none" en producción)
