@@ -29,6 +29,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.hibernate:hibernate-core:6.4.0.Final")
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
     implementation("jakarta.validation:jakarta.validation-api:3.0.2")
     implementation("com.sun.mail:javax.mail:1.6.2") // Java Mail Sender
     implementation("org.jetbrains.kotlin:kotlin-reflect")
