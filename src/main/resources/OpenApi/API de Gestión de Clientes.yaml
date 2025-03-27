@@ -93,9 +93,7 @@ paths:
                 nombre:
                   type: string
                   example: "Nuevo nombre"
-                telefono:
-                  type: string
-                  example: "Nuevo telefono"
+
       responses:
         "200":
           description: Usuario actualizado exitosamente
@@ -144,6 +142,7 @@ paths:
 
 components:
   schemas:
+
     Cliente:
       type: object
       properties:
@@ -156,9 +155,13 @@ components:
         email:
           type: string
           example: "juan.perez@example.com"
-        telefono:
+        password:
           type: string
-          example: "+52 555-123-4567"
+          example: "yoquese"
+        Rol:
+          type: string
+          enum: [AGENTE_VENTAS,PERSONAL_BODEGA,CLIENTE]
+          example: CLIENTE
         capacidad_espacio:
           type: array
           nullable: true
@@ -185,7 +188,6 @@ components:
         ubicacion:
           type: string
           example: No se
-
 
     Producto:
       type: object

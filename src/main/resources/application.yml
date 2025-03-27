@@ -1,22 +1,19 @@
 spring:
   datasource:
     # 🔹 URL de conexión a la base de datos
-    url: postgresql://postgres:kStlbWGabRxiESSYUquziKqoxLIbFEJJ@trolley.proxy.rlwy.net:31433/railway
+    url: jdbc:postgresql://${PGHOST}:${PGPORT}/${POSTGRES_DB}
 
     # 🔹 Nombre de usuario de la base de datos
-    username: postgres
+    username: ${PGUSER}
 
     # 🔹 Contraseña de la base de datos
-    password: kStlbWGabRxiESSYUquziKqoxLIbFEJJ
+    password: ${PGPASSWORD}
 
     # 🔹 Driver JDBC para PostgreSQL
     driver-class-name: org.postgresql.Driver
 
   jpa:
-    # 🔹 Dialecto para PostgreSQL, necesario para Hibernate
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-
     hibernate:
-      # 🔹 Controla las actualizaciones automáticas del esquema de Hibernate
-      ddl-auto: update
+      ddl-auto: update  # Puede ser update, create, validate, o none
+      show-sql: true  # Muestra las consultas en la consola
 
