@@ -35,7 +35,11 @@ dependencies {
     implementation("com.sun.mail:javax.mail:1.6.2") // Java Mail Sender
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
-    implementation("com.oracle.database.jdbc:ojdbc8:21.9.0.0") // Oracle SQL
+
+    implementation("org.postgresql:postgresql:42.5.0") // Driver de PostgreSQL
+    implementation("org.postgresql:postgresql:42.7.1") // 🔹 Driver JDBC para PostgreSQL
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-jdbc")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

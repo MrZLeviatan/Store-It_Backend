@@ -1,11 +1,22 @@
 spring:
   datasource:
-    url: jdbc:oracle:thin:@localhost:1521:xe  # URL de conexión a Oracle (XE es la versión Express)
-    username: tu_usuario  # Usuario de la base de datos
-    password: tu_contraseña  # Contraseña de la base de datos
-    driver-class-name: oracle.jdbc.OracleDriver  # Driver JDBC para Oracle
+    # 🔹 URL de conexión a la base de datos
+    url: postgresql://postgres:kStlbWGabRxiESSYUquziKqoxLIbFEJJ@trolley.proxy.rlwy.net:31433/railway
+
+    # 🔹 Nombre de usuario de la base de datos
+    username: postgres
+
+    # 🔹 Contraseña de la base de datos
+    password: kStlbWGabRxiESSYUquziKqoxLIbFEJJ
+
+    # 🔹 Driver JDBC para PostgreSQL
+    driver-class-name: org.postgresql.Driver
 
   jpa:
-    database-platform: org.hibernate.dialect.Oracle12cDialect  # Dialecto de Oracle para Hibernate
+    # 🔹 Dialecto para PostgreSQL, necesario para Hibernate
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
     hibernate:
-      ddl-auto: update  # "update" permite modificar tablas automáticamente (cámbialo a "none" en producción)
+      # 🔹 Controla las actualizaciones automáticas del esquema de Hibernate
+      ddl-auto: update
+
