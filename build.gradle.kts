@@ -69,8 +69,7 @@ dependencies {
     // 🔹 Librería estándar de Kotlin
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
 
-
-    // 🔹 Driver de MySQL en lugar de PostgreSQL
+    // 🔹 Driver de MySQL
     implementation("mysql:mysql-connector-java:8.0.33")
 
 
