@@ -6,6 +6,7 @@ import co.edu.uniquindio.dto.Cliente.EditarClienteDTO;
 
 import java.util.List;
 
+
 public interface ClienteServicio {
 
     /**
@@ -44,10 +45,9 @@ public interface ClienteServicio {
     /**
      * Obtiene una lista paginada de todos los clientes filtrados por nombre.
      *
-     * @param nombre Filtro de nombre para los clientes.
      * @param pagina Número de página para la paginación.
      * @return Lista de ClienteDto con los detalles de los clientes.
      */
-    List<ClienteDto> listarTodos(String nombre, int pagina);
+    List<ClienteDto> listarTodos(int pagina);
 
 }

@@ -70,13 +70,15 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
 
 
-    // 🔹 Driver de PostgreSQL: Necesario para conectarse a la base de datos PostgreSQL
-    implementation("org.postgresql:postgresql:42.5.0")
-    implementation("org.postgresql:postgresql:42.7.1")
+    // 🔹 Driver de MySQL en lugar de PostgreSQL
+    implementation("mysql:mysql-connector-java:8.0.33")
 
 
     // 🔹 Starter JDBC de Spring Boot: Habilita funcionalidades JDBC
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
+
+    // 🔹 Librería Swagger/
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

@@ -80,7 +80,7 @@ public class ClienteServicioImpl implements ClienteServicio {
     }
 
     @Override
-    public List<ClienteDto> listarTodos(String nombre, int pagina) {
+    public List<ClienteDto> listarTodos(int pagina) {
         // 🔹 Validar que la página no sea menor a 0
         if (pagina < 0) throw new RuntimeException("La página no puede ser menor a 0");
 

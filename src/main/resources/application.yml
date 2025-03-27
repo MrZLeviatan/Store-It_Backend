@@ -1,19 +1,18 @@
 spring:
   datasource:
-    # 🔹 URL de conexión a la base de datos
-    url: jdbc:postgresql://${PGHOST}:${PGPORT}/${POSTGRES_DB}
-
-    # 🔹 Nombre de usuario de la base de datos
-    username: ${PGUSER}
-
-    # 🔹 Contraseña de la base de datos
-    password: ${PGPASSWORD}
-
-    # 🔹 Driver JDBC para PostgreSQL
-    driver-class-name: org.postgresql.Driver
+    # 🔹 Configuración para MySQL en Railway
+    url: jdbc:mysql://mysql.railway.internal:3306/railway
+    username: root
+    password: fqfFnLXAHlHfDRmgwpMAiYyEBxFXrnru
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 5
+      connection-timeout: 30000
+      idle-timeout: 30000
+      max-lifetime: 1800000
 
   jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto: update  # Puede ser update, create, validate, o none
-      show-sql: true  # Muestra las consultas en la consola
-
+      ddl-auto: update
+    show-sql: true

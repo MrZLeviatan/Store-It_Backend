@@ -15,7 +15,7 @@ import lombok.Setter;
 public class Usuario {
 
     @Id
-    @Column(name = "id", nullable = false, unique = true) // Columna para el ID. No puede ser nula y debe ser única.
+    @Column(name = "cedula", nullable = false, unique = true) // Columna para el ID. No puede ser nula y debe ser única.
     private String id;
 
     @Column(name = "nombre", nullable = false) // El nombre no puede ser nulo.
