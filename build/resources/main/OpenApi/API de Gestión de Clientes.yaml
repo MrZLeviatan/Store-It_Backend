@@ -1,0 +1,248 @@
+openapi: 3.0.0
+info:
+  title: API de Gestión de Clientes - Software de Almacenaje
+  description: API para gestionar la información de clientes en el sistema de bodegas.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080/api
+    description: Servidor local
+
+paths:
+  /clientes:
+    post:
+      summary: Registrar un nuevo cliente.
+      tags:
+        - Cliente
+      description:
+        Registra un nuevo cliente en el sistema.
+        
+        - Se valida que el correo y el ID no estén repetidos, y que todos los campos sean obligatorios.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+      responses:
+        "201":
+          description: Usuario registrado exitosamente. Código de activación enviado.
+        "400":
+          description: Error en los datos enviados - Datos faltantes o incorrectos,
+        "409":
+          description: Conflicto - Email o ID ya existen.
+
+
+  /clientes/{id}:
+    get:
+      summary: Obtener información de un cliente.
+      tags:
+      - Cliente
+      description: |
+        Devuelve los datos de un cliente específico mediante su ID.
+        Solo el propio cliente o un moderador pueden acceder a esta información.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID único del cliente
+          schema:
+            type: string
+      security:
+        - cookieAuth: [ ]
+      responses:
+        "200":
+          description: Información del cliente obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cliente"
+        "400":
+          description: Solicitud incorrecta (ID inválido).
+        "401":
+          description: No autorizado (cookie faltante o inválida).
+        "403":
+          description: Acceso prohibido (el cliente autenticado no coincide con el ID).
+        "404":
+          description: Cliente no encontrado.
+        "500":
+          description: Error interno del servidor.
+
+    put:
+      summary: Actualizar información de un cliente
+      tags:
+        - Cliente
+      description: |
+        Permite a un cliente actualizar sus datos personales y detalles de su contrato de almacenaje.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID único del cliente
+          schema:
+            type: string
+      security:
+        - cookieAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                  example: "Nuevo nombre"
+
+      responses:
+        "200":
+          description: Usuario actualizado exitosamente
+        "400":
+          description: Error en los datos enviados. Algún campo es inválido o está vacío.
+        "401":
+          description: No autenticado.
+        "403":
+          description: Acceso prohibido (ID no coincide con el autenticado).
+        "404":
+          description: Usuario no encontrado.
+        "500":
+          description: Error del servidor.
+
+    delete:
+      summary: Eliminar un cliente
+      tags:
+        - Cliente
+      description: Permite a un cliente eliminar su cuenta e información personal.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID único del cliente
+          schema:
+            type: string
+      security:
+        - cookieAuth: [ ]
+      responses:
+        "204":
+          description: Usuario eliminado exitosamente
+        "202":
+          description: La solicitud fue recibida, pero la eliminación se procesará más tarde (caso de procesamiento asíncrono).
+        "400":
+          description: El id es inválido o la solicitud está malformada.
+        "401":
+          description: No se envió token o cookie de autenticación, o es inválido.
+        "403":
+          description: Acceso prohibido (ID no coincide con el autenticado)
+        "404":
+          description: Usuario no encontrado
+        "500":
+          description: Fallo en la base de datos o en el servidor.
+        "502":
+          description: El servidor no puede comunicarse con otro servicio necesario.
+
+components:
+  schemas:
+
+    Cliente:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        nombre:
+          type: string
+          example: "Juan Pérez"
+        email:
+          type: string
+          example: "juan.perez@example.com"
+        password:
+          type: string
+          example: "yoquese"
+        Rol:
+          type: string
+          enum: [AGENTE_VENTAS,PERSONAL_BODEGA,CLIENTE]
+          example: CLIENTE
+        capacidad_espacio:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Espacio'
+        productos:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Producto'
+
+    Espacio:
+      type: object
+      properties:
+        espacioMetrico:
+          $ref: '#/components/schemas/EspacioMetrico'
+        codigoUbicacion:
+          type: string
+          format: uuid
+          example: 34DH
+        isOcupado:
+          type: boolean
+          example: true
+        ubicacion:
+          type: string
+          example: No se
+
+    Producto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 34US
+        espacioMetrico:
+          $ref: '#/components/schemas/EspacioMetrico'
+        retiros_asociados:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Retiro'
+        ingresos_asosiados:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Ingreso'
+
+    Retiro:
+      type: object
+      properties:
+        id:
+          type: integer
+
+    Ingreso:
+      type: object
+      properties:
+        id:
+          type: integer
+
+
+    EspacioMetrico:
+      type: object
+      properties:
+        alto:
+          type: number
+          format: double
+          example: 16.27
+        ancho:
+          type: number
+          format: double
+          example: 18.2
+        largo:
+          type: number
+          format: double
+          example: 17.2
+
+  # Seguridad  ( Tokens o Cookies )
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: SESSIONID  # Cookie de autenticación con la sesión del usuario
+
+

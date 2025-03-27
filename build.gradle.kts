@@ -48,7 +48,6 @@ dependencies {
     // 🔹 Starter JPA de Spring Boot: Habilita funcionalidades JPA con Hibernate
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
-
     // 🔹 Lombok: Reduce el código repetitivo en clases Java (Getters, Setters, etc.)
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
