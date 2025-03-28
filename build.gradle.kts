@@ -78,6 +78,9 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    // libreria para enviar correos electronicos
+    implementation("org.apache.commons:commons-email2-jakarta:2.0.0-M1")
 }
 
 tasks.test {
