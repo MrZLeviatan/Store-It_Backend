@@ -8,12 +8,12 @@ import java.util.List;
 
 public record ClienteDto(
 
-        String id,
+        String cedula,
         String nombre,
         String email,
         String password,
-        Rol rol,
-        List<ProductoDto> listProducto,
-        List<EspacioDto> listEspacios
+        Rol rol
+       // List<ProductoDto> listProducto,
+       // List<EspacioDto> listEspacios
 ) {
 }

@@ -14,15 +14,16 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 @Table(name = "clientes")
 public class Cliente extends Usuario {
 
     // Relación de 1 cliente a muchos espacios
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Espacio> espacios;
+    private List<Espacio> listEspacios;
 
     // Relación de 1 cliente a muchos productos
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Producto> productos;
+    private List<Producto> listProducto;
 
 }

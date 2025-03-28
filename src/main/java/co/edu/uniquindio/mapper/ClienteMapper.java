@@ -19,7 +19,6 @@ public interface ClienteMapper {
      * @return Objeto Cliente con los datos asignados.
      */
     @Mapping(target = "rol", constant = "CLIENTE") // 🔹 Se asigna el rol "CLIENTE" por defecto
-    @Mapping(target = "id", ignore = true) // 🔹 El ID se genera automáticamente en el backend
     Cliente toEntity(CrearClienteDTO clienteDTO);
 
     /**

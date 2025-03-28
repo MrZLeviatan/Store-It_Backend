@@ -16,13 +16,13 @@ public class Usuario {
 
     @Id
     @Column(name = "cedula", nullable = false, unique = true) // Columna para el ID. No puede ser nula y debe ser única.
-    private String id;
+    private String cedula;
 
     @Column(name = "nombre", nullable = false) // El nombre no puede ser nulo.
-    private String name;
+    private String nombre;
 
     @Column(name = "email", nullable = false, unique = true) // El email no puede ser nulo y debe ser único.
-    private String gmail;
+    private String email;
 
     @Column(name = "password",nullable = false) // La contraseña del usuario. No puede ser nula.
     private String password;

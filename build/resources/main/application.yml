@@ -1,18 +1,15 @@
 spring:
   datasource:
-    # 🔹 Configuración para MySQL en Railway
-    url: jdbc:mysql://mysql.railway.internal:3306/railway
-    username: root
-    password: fqfFnLXAHlHfDRmgwpMAiYyEBxFXrnru
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    hikari:
-      maximum-pool-size: 5
-      connection-timeout: 30000
-      idle-timeout: 30000
-      max-lifetime: 1800000
+    url: jdbc:oracle:thin:@localhost:1521/XEPDB1
+    username: leviatan
+    password: nicolas123
+    driver-class-name: oracle.jdbc.OracleDriver
 
   jpa:
-    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database-platform: org.hibernate.dialect.OracleDialect
     hibernate:
       ddl-auto: update
     show-sql: true
+  sql:
+      init:
+        mode: always

@@ -68,9 +68,8 @@ dependencies {
     // 🔹 Librería estándar de Kotlin
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
 
-    // 🔹 Driver de MySQL
-    implementation("mysql:mysql-connector-java:8.0.33")
-
+    // Oracle JDBC Driver
+    implementation("com.oracle.database.jdbc:ojdbc11:21.8.0.0")
 
     // 🔹 Starter JDBC de Spring Boot: Habilita funcionalidades JDBC
     implementation("org.springframework.boot:spring-boot-starter-jdbc")

@@ -30,6 +30,12 @@ public class ClienteServicioImpl implements ClienteServicio {
         if (existeEmail(cuenta.email())){
             throw new ElementoRepetidoException("El email ya existe");
         }
+
+        // 🔹 Verifica si la cedula ya está registrado antes de crear el cliente.
+        if (existeCeula(cuenta.cedula())){
+            throw new ElementoRepetidoException("El cedula ya existe");
+        }
+
         // 🔹 Convierte el DTO en una entidad y lo guarda en la base de datos.
         Cliente cliente = clienteMapper.toEntity(cuenta);
         clienteRepo.save(cliente);
@@ -38,6 +44,10 @@ public class ClienteServicioImpl implements ClienteServicio {
     // 🔹 Método privado para verificar si un email ya existe en la base de datos.
     private boolean existeEmail(String email) {
         return clienteRepo.findByEmail(email).isPresent();
+    }
+
+    private boolean existeCeula(String cedula){
+        return clienteRepo.findByCedula(cedula).isPresent();
     }
 
     @Override
@@ -52,15 +62,15 @@ public class ClienteServicioImpl implements ClienteServicio {
 
 
     // 🔹 Método privado para buscar un cliente por ID
-    private Cliente buscarClientePorId(String id) throws ElementoNoEncontradoException {
-        return clienteRepo.findById(id)
-                .orElseThrow(() -> new ElementoNoEncontradoException("El cliente con ID " + id + " no existe."));
+    private Cliente buscarClientePorId(String cedula) throws ElementoNoEncontradoException {
+        return clienteRepo.findByCedula(cedula)
+                .orElseThrow(() -> new ElementoNoEncontradoException("El cliente con ID " + cedula + " no existe."));
     }
 
     @Override
     public void editar(EditarClienteDTO cuenta) throws Exception {
         // 🔹 Buscar cliente en la base de datos
-        Cliente cliente = buscarClientePorId(cuenta.id());
+        Cliente cliente = buscarClientePorId(cuenta.cedula());
 
         // 🔹 Actualizar datos del cliente usando el mapper
         clienteMapper.toEntity(cuenta, cliente);

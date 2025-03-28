@@ -5,7 +5,7 @@ import org.hibernate.validator.constraints.Length;
 
 public record EditarClienteDTO(
 
-        @NotBlank String id,
+        @NotBlank String cedula,
         @NotBlank @Length(max = 100) String nombre
 ) {
 

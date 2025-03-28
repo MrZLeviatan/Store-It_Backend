@@ -3,17 +3,14 @@ package co.edu.uniquindio.mapper;
 import co.edu.uniquindio.dto.Cliente.ClienteDto;
 import co.edu.uniquindio.dto.Cliente.CrearClienteDTO;
 import co.edu.uniquindio.dto.Cliente.EditarClienteDTO;
-import co.edu.uniquindio.dto.Espacio.EspacioDto;
-import co.edu.uniquindio.dto.Producto.ProductoDto;
 import co.edu.uniquindio.model.Cliente;
 import co.edu.uniquindio.model.enums.Rol;
-import java.util.List;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-03-27T18:56:18-0500",
+    date = "2025-03-28T11:53:32-0500",
     comments = "version: 1.6.3, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.10.jar, environment: Java 21.0.4 (Oracle Corporation)"
 )
 @Component
@@ -27,6 +24,9 @@ public class ClienteMapperImpl implements ClienteMapper {
 
         Cliente cliente = new Cliente();
 
+        cliente.setCedula( clienteDTO.cedula() );
+        cliente.setNombre( clienteDTO.nombre() );
+        cliente.setEmail( clienteDTO.email() );
         cliente.setPassword( clienteDTO.password() );
 
         cliente.setRol( Rol.CLIENTE );
@@ -40,20 +40,19 @@ public class ClienteMapperImpl implements ClienteMapper {
             return null;
         }
 
-        String id = null;
+        String cedula = null;
+        String nombre = null;
+        String email = null;
         String password = null;
         Rol rol = null;
 
-        id = cliente.getId();
+        cedula = cliente.getCedula();
+        nombre = cliente.getNombre();
+        email = cliente.getEmail();
         password = cliente.getPassword();
         rol = cliente.getRol();
 
-        String nombre = null;
-        String email = null;
-        List<ProductoDto> listProducto = null;
-        List<EspacioDto> listEspacios = null;
-
-        ClienteDto clienteDto = new ClienteDto( id, nombre, email, password, rol, listProducto, listEspacios );
+        ClienteDto clienteDto = new ClienteDto( cedula, nombre, email, password, rol );
 
         return clienteDto;
     }
@@ -64,6 +63,7 @@ public class ClienteMapperImpl implements ClienteMapper {
             return;
         }
 
-        cliente.setId( editarClienteDTO.id() );
+        cliente.setCedula( editarClienteDTO.cedula() );
+        cliente.setNombre( editarClienteDTO.nombre() );
     }
 }
