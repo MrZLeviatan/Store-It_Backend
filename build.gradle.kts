@@ -38,6 +38,9 @@ dependencies {
     implementation("com.oracle.database.jdbc:ojdbc8:21.9.0.0") // Oracle SQL
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+        implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+
+
 }
 
 tasks.test {
