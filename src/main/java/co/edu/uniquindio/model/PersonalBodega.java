@@ -1,43 +1,49 @@
 package co.edu.uniquindio.model;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.*;
-import org.springframework.data.annotation.Id;
-import java.time.LocalDate;
 import lombok.*;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
+
+@Entity
 @Data //Generar get,set, equals, lo básico
 @AllArgsConstructor //Constructor sin arg
 @NoArgsConstructor //Constructor con arg
-@Document(collation = "personal bodega") //Indica que se almacena en mongoDB
+@Table(name = "personal_bodega") //Indica en nombre en base de datoss
 
 public class PersonalBodega {
     @Id
+    @Column(name = "id", nullable = false, unique = true) // Columna para el ID. No puede ser nula y debe ser única.
     private String id;
 
     @NotBlank(message = "Nombre obligatorio")
+    @Column(name = "nombre", nullable = false) // El nombre no puede ser nulo.
     @Size(min = 3, max = 25, message = "El nombre debe tener entre 3 y 25 caracteres")
     private String nombre;
 
     @Size(min = 3, max = 25, message = "El apellido debe tener entre 3 y 25 caracteres")
     @NotBlank(message = "El apellido es obligatorio")
+    @Column(name = "apellido", nullable = false) // El apellido no puede ser nulo.
     private String apellido;
 
     @Email(message = "Debe ser un email con formato valido")
     @NotBlank(message = "Email obligatorio")
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Pattern(regexp = "\\d{10}", message = "El teléfono debe tener 10 dígitos")
+    @Column(name = "telefono", nullable = false)
     private String telefono;
 
     @NotBlank(message = "Cargo obligatorio")
+    @Column(name = "cargo", nullable = false)
     private String cargo;
 
     @PastOrPresent (message = "La fecha no puede ser mayor a la de hoy")
-    private LocalDate fecha;
-
-
-
-
+    @Column(name = "fecha_ingreso", nullable = false)
+    private LocalDate fechaIngreso;
 
 }
