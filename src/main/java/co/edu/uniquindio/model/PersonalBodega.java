@@ -16,6 +16,7 @@ import java.time.LocalDate;
 
 public class PersonalBodega {
     @Id
+    @NotBlank(message = "El ID es de caracter obligatorio")
     @Column(name = "id", nullable = false, unique = true) // Columna para el ID. No puede ser nula y debe ser única.
     private String id;
 
