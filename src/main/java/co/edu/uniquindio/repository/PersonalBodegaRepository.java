@@ -1,4 +1,4 @@
 package co.edu.uniquindio.repository;
 
-public class PersonalBodegaRepository {
+public class PersonalBodegaRepository  {
 }
