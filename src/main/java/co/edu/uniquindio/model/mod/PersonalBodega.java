@@ -1,4 +1,9 @@
-package co.edu.uniquindio.model;
+/*
+ *La clase modelo se encarga de definir la entidad que se guarda
+ * en bd
+ */
+
+package co.edu.uniquindio.model.mod;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -8,14 +13,14 @@ import lombok.*;
 
 import java.time.LocalDate;
 
-@Entity
+@Entity //Mapear en tabla en bd, entidad JPA
 @Data //Generar get,set, equals, lo básico
 @AllArgsConstructor //Constructor sin arg
 @NoArgsConstructor //Constructor con arg
 @Table(name = "personal_bodega") //Indica en nombre en base de datoss
 
 public class PersonalBodega {
-    @Id
+    @Id //Validaciones
     @NotBlank(message = "El ID es de caracter obligatorio")
     @Column(name = "id", nullable = false, unique = true) // Columna para el ID. No puede ser nula y debe ser única.
     private String id;
