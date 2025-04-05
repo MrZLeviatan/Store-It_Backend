@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-03-28T11:53:32-0500",
-    comments = "version: 1.6.3, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.10.jar, environment: Java 21.0.4 (Oracle Corporation)"
+    date = "2025-04-04T20:17:16-0500",
+    comments = "version: 1.6.3, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.10.jar, environment: Java 21.0.3 (Amazon.com Inc.)"
 )
 @Component
 public class ClienteMapperImpl implements ClienteMapper {
