@@ -146,8 +146,8 @@ components:
     Cliente:
       type: object
       properties:
-        id:
-          type: integer
+        cedula:
+          type: string
           example: 1
         nombre:
           type: string

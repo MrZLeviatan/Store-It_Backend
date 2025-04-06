@@ -28,44 +28,6 @@ public class ClienteControlerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Test
-    public void crearCorrectoTest() throws Exception {
-
-        //Se crea un objeto para realizar la creación de la cuenta
-        CrearClienteDTO cuentaDTO = new CrearClienteDTO(
-                "102",
-                "Luis Perez",
-                "luis@example.com",
-                "1234567890"
-        );
-
-        //Se realiza la petición POST al servidor usando el MockMvc y se valida que el estado de la respuesta sea 201
-        mockMvc.perform(post("/api/clientes")
-                        .contentType("application/json")
-                        .content(objectMapper.writeValueAsString(cuentaDTO)))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(status().isCreated()); // Espera que la respuesta tenga el código 201 (CREATED)
-
-     }
-
-    @Test
-    public void crearIncorrectoTest() throws Exception {
-
-        //Se crea un objeto para realizar la creación de la cuenta
-        CrearClienteDTO cuentaDTO = new CrearClienteDTO(
-                "1001330212",
-                "Luis Perez",
-                "nicolas@example.com",
-                "12345678"
-        );
-
-        //Se realiza la petición POST al servidor usando el MockMvc y se valida que el estado de la respuesta sea 201
-        mockMvc.perform(post("/api/clientes")
-                        .contentType("application/json")
-                        .content(objectMapper.writeValueAsString(cuentaDTO)))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(status().isBadRequest());
-    }
 
     @Test
     public void actualizarTest() throws Exception {

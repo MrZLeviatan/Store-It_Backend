@@ -13,50 +13,52 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequiredArgsConstructor
-@RequestMapping("/api/clientes")
+@RestController // Indica que esta clase es un controlador REST
+@RequiredArgsConstructor // Genera automáticamente el constructor con los atributos finales (como clienteServicio)
+@RequestMapping("/api/clientes") // Define la ruta base para todos los endpoints de este controlador
+
+//Clase del Cliente Controlador
 public class ClienteController {
 
-    private final ClienteServicio clienteServicio;
+    private final ClienteServicio clienteServicio; // 🛠 Servicio que contiene la lógica de negocio para clientes
 
-
+    // Endpoint para crear un nuevo cliente
     @PostMapping
     public ResponseEntity<MensajeDTO<String>> crear(@Valid @RequestBody CrearClienteDTO cuenta) throws Exception{
-        clienteServicio.crear(cuenta);
+        clienteServicio.crear(cuenta); // Llama al servicio para crear el cliente
         return ResponseEntity.status(201).body(new MensajeDTO<>(false, "Su registro ha sido exitoso"));
     }
 
     @SecurityRequirement(name = "cookieAuth")  // 🔐 Método protegido (requiere autenticación con cookies)
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") // 🔎 Obtiene la información de un cliente por su ID
     public ResponseEntity<MensajeDTO<ClienteDto>> obtener(@PathVariable String id) throws Exception {
-        ClienteDto info = clienteServicio.obtener(id);
-        return ResponseEntity.ok(new MensajeDTO<>(false,info));
+        ClienteDto info = clienteServicio.obtener(id); // Llama al servicio para obtener los datos del cliente
+        return ResponseEntity.ok(new MensajeDTO<>(false,info)); // Retorna la información del cliente
     }
 
     @SecurityRequirement(name = "cookieAuth")  // 🔐 Método protegido (requiere autenticación con cookies)
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}") // 🗑 Elimina un cliente por su ID
     public ResponseEntity<MensajeDTO<String>> eliminar(@PathVariable String id) throws Exception {
-        clienteServicio.eliminar(id);
+        clienteServicio.eliminar(id); // Llama al servicio para eliminar el cliente
         return ResponseEntity.ok(new MensajeDTO<>(false, "Cuenta eliminada exitosamente"));
     }
 
-
     @SecurityRequirement(name = "cookieAuth")  // 🔐 Método protegido (requiere autenticación con cookies)
-    @PutMapping
+    @PutMapping // ✏️ Actualiza la información de un cliente
     public ResponseEntity<MensajeDTO<String>> editarCuenta(@Valid @RequestBody EditarClienteDTO cuenta) throws Exception{
-        clienteServicio.editar(cuenta);
+        clienteServicio.editar(cuenta); // Llama al servicio para editar el cliente
         return ResponseEntity.ok(new MensajeDTO<>(false, "Cuenta editada exitosamente"));
     }
 
     @SecurityRequirement(name = "cookieAuth")  // 🔐 Método protegido (requiere autenticación con cookies)
-    @GetMapping
+    @GetMapping // 📋 Lista todos los clientes, con opción de filtrar por nombre y ciudad
     public ResponseEntity<MensajeDTO<List<ClienteDto>>> listarTodos(
-            @RequestParam(required = false) String nombre,
-            @RequestParam(required = false) String ciudad,
-            @RequestParam int pagina
+
+            @RequestParam(required = false) String nombre, // 🔍 Filtro opcional por nombre
+            @RequestParam(required = false) String ciudad, // 🔍 Filtro opcional por ciudad
+            @RequestParam int pagina // 📄 Número de página para paginación
     ){
-        List<ClienteDto> lista = clienteServicio.listarTodos(pagina);
+        List<ClienteDto> lista = clienteServicio.listarTodos(pagina); // Llama al servicio para obtener la lista paginada
         return ResponseEntity.ok(new MensajeDTO<>(false, lista));
     }
 
