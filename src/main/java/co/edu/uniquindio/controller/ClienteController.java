@@ -53,16 +53,10 @@ public class ClienteController {
     @SecurityRequirement(name = "cookieAuth")  // 🔐 Método protegido (requiere autenticación con cookies)
     @GetMapping // 📋 Lista todos los clientes, con opción de filtrar por nombre y ciudad
     public ResponseEntity<MensajeDTO<List<ClienteDto>>> listarTodos(
-<<<<<<< HEAD
-            @RequestParam(required = false) String cedula,
-            @RequestParam(required = false) String nombre,
-            @RequestParam(required = false) String ciudad,
-            @RequestParam int pagina
-=======
+
             @RequestParam(required = false) String nombre, // 🔍 Filtro opcional por nombre
             @RequestParam(required = false) String ciudad, // 🔍 Filtro opcional por ciudad
             @RequestParam int pagina // 📄 Número de página para paginación
->>>>>>> Registrar_Clientes
     ){
         List<ClienteDto> lista = clienteServicio.listarTodos(pagina); // Llama al servicio para obtener la lista paginada
         return ResponseEntity.ok(new MensajeDTO<>(false, lista));
