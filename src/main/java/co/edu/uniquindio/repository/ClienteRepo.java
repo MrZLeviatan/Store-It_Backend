@@ -16,4 +16,5 @@ public interface ClienteRepo extends JpaRepository<Cliente, String> {
     // 🔹 Buscar clientes con una cedula específico
     Optional<Cliente> findByCedula(String cedula);
 
+
 }

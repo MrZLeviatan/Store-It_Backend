@@ -52,6 +52,7 @@ public class ClienteController {
     @SecurityRequirement(name = "cookieAuth")  // 🔐 Método protegido (requiere autenticación con cookies)
     @GetMapping
     public ResponseEntity<MensajeDTO<List<ClienteDto>>> listarTodos(
+            @RequestParam(required = false) String cedula,
             @RequestParam(required = false) String nombre,
             @RequestParam(required = false) String ciudad,
             @RequestParam int pagina

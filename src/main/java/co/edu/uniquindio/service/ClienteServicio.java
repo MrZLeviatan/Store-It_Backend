@@ -20,10 +20,10 @@ public interface ClienteServicio {
     /**
      * Elimina un cliente por su ID.
      *
-     * @param id Identificador único del cliente.
+     * @param cedula Identificador único del cliente.
      * @throws Exception Si el cliente no existe o no puede ser eliminado.
      */
-    void eliminar(String id) throws Exception;
+    void eliminar(String cedula) throws Exception;
 
     /**
      * Actualiza una cuenta de cliente existente.
@@ -51,3 +51,4 @@ public interface ClienteServicio {
     List<ClienteDto> listarTodos(int pagina);
 
 }
+

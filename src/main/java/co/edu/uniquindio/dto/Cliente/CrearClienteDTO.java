@@ -11,6 +11,6 @@ public record CrearClienteDTO(
         @NotBlank @Length(max = 100) String nombre,
         @NotBlank @Length(max = 50) @Email String email,
         @NotBlank @Length(min = 7, max = 20) String password
-
 ) {
 }
+
