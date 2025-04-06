@@ -32,9 +32,9 @@ public class RegistrarClienteTest {
 
         //Se crea un objeto para realizar la creación de la cuenta
         CrearClienteDTO cuentaDTO = new CrearClienteDTO(
-                "102",
+                "103",
                 "Luis Perez",
-                "luis@example.com",
+                "william@example.com",
                 "1234567890"
         );
 
