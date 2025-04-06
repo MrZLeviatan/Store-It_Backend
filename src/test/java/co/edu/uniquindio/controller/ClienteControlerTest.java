@@ -1,7 +1,6 @@
 package co.edu.uniquindio.controller;
 
 import co.edu.uniquindio.StoreItApplication;
-import co.edu.uniquindio.dto.Cliente.CrearClienteDTO;
 import co.edu.uniquindio.dto.Cliente.EditarClienteDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.Cookie;

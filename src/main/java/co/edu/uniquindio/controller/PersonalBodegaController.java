@@ -4,10 +4,12 @@
 
 package co.edu.uniquindio.controller;
 
-import co.edu.uniquindio.dto.PersonalBodegaDTO;
-import co.edu.uniquindio.dto.MessageDTO;
+import co.edu.uniquindio.dto.PersonalBodega.CrearPersonalBodegaDTO;
+import co.edu.uniquindio.dto.MensajeDTO;
 
-import co.edu.uniquindio.service.service.PersonalBodegaService;
+import co.edu.uniquindio.dto.PersonalBodega.EditarPersonalBodegaDTO;
+import co.edu.uniquindio.dto.PersonalBodega.PersonalBodegaDTO;
+import co.edu.uniquindio.service.PersonalBodegaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,36 +25,31 @@ public class PersonalBodegaController {
     private final PersonalBodegaService personalBodegaServicio;
 
     @PostMapping //Metodos HTTP
-    public ResponseEntity<MessageDTO<String>> crearPersonalBodega(@Valid @RequestBody PersonalBodegaDTO personal) throws Exception {
+    public ResponseEntity<MensajeDTO<String>> crearPersonalBodega(@Valid @RequestBody CrearPersonalBodegaDTO personal) throws Exception {
         personalBodegaServicio.crearPersonalBodega(personal);
-        return ResponseEntity.status(201).body(new MessageDTO<>(false, "Personal de bodega registrado "));
+        return ResponseEntity.status(201).body(new MensajeDTO<>(false, "Personal de bodega registrado "));
     }
 
     //@SecurityRequirement(name = "cookieAuth")
     @GetMapping("/{id}")
-    public ResponseEntity<MessageDTO<PersonalBodegaDTO>> obtenerPersonalBodegaPoId(@PathVariable String id) throws Exception {
+    public ResponseEntity<MensajeDTO<PersonalBodegaDTO>> obtenerPersonalBodegaPoId(@PathVariable String id) throws Exception {
         PersonalBodegaDTO personal = personalBodegaServicio.obtenerPersonalBodegaPoId(id);
-        return ResponseEntity.ok(new MessageDTO<>(false, personal));
+        return ResponseEntity.ok(new MensajeDTO<>(false, personal));
     }
 
     //@SecurityRequirement(name = "cookieAuth")
     @DeleteMapping("/{id}")
-    public ResponseEntity<MessageDTO<String>> eliminarPersonalBodega(@PathVariable String id) throws Exception {
+    public ResponseEntity<MensajeDTO<String>> eliminarPersonalBodega(@PathVariable String id) throws Exception {
         personalBodegaServicio.eliminarPersonalBodega(id);
-        return ResponseEntity.ok(new MessageDTO<>(false, "Personal de bodega eliminado"));
+        return ResponseEntity.ok(new MensajeDTO<>(false, "Personal de bodega eliminado"));
     }
 
     //@SecurityRequirement(name = "cookieAuth")
     @PutMapping
-    public ResponseEntity<MessageDTO<String>> actualizarPersonalBodega(@Valid @RequestBody PersonalBodegaDTO cuentaPersonal) throws Exception {
+    public ResponseEntity<MensajeDTO<String>> actualizarPersonalBodega(@Valid @RequestBody EditarPersonalBodegaDTO cuentaPersonal) throws Exception {
         personalBodegaServicio.actualizarPersonalBodega(cuentaPersonal);
-        return ResponseEntity.ok(new MessageDTO<>(false, "Información de personal de bodega actualizada"));
+        return ResponseEntity.ok(new MensajeDTO<>(false, "Información de personal de bodega actualizada"));
     }
 
-    //@SecurityRequirement(name = "cookieAuth")
-    @GetMapping
-    public ResponseEntity<MessageDTO<List<PersonalBodegaDTO>>> listarTodos(@RequestParam int pagina) {
-        List<PersonalBodegaDTO> lista = personalBodegaServicio.listarPersonalBod(pagina);
-        return ResponseEntity.ok(new MessageDTO<>(false, lista));
-    }
+
 }

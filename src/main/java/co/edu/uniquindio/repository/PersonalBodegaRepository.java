@@ -3,7 +3,7 @@
  */
 package co.edu.uniquindio.repository;
 
-import co.edu.uniquindio.model.mod.PersonalBodega;
+import co.edu.uniquindio.model.PersonalBodega;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +15,5 @@ public interface PersonalBodegaRepository extends JpaRepository<PersonalBodega, 
     Optional<PersonalBodega> findByEmail(String gmail);
 
     // 🔹 Buscar personal con una cedula específico
-    Optional<PersonalBodega> findByCedula(String id);
+    Optional<PersonalBodega> findById(String id);
 }

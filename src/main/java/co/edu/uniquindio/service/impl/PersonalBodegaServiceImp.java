@@ -1,14 +1,17 @@
 //Implementacion logica
-package co.edu.uniquindio.service.service.impl;
-import co.edu.uniquindio.dto.PersonalBodegaDTO;
+package co.edu.uniquindio.service.impl;
+import co.edu.uniquindio.dto.PersonalBodega.CrearPersonalBodegaDTO;
+import co.edu.uniquindio.dto.PersonalBodega.EditarPersonalBodegaDTO;
+import co.edu.uniquindio.dto.PersonalBodega.PersonalBodegaDTO;
+import co.edu.uniquindio.exception.ElementoNoEncontradoException;
 import co.edu.uniquindio.mapper.PersonalBodegaMapper;
 import co.edu.uniquindio.repository.PersonalBodegaRepository;
-import co.edu.uniquindio.service.service.PersonalBodegaService;
+import co.edu.uniquindio.service.PersonalBodegaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import co.edu.uniquindio.model.mod.PersonalBodega;
+import co.edu.uniquindio.model.PersonalBodega;
 
 
 
@@ -21,9 +24,9 @@ public class PersonalBodegaServiceImp implements PersonalBodegaService {
     private final PersonalBodegaRepository personalRepo;
     private final PersonalBodegaMapper personalMapper;
 
-//Valida y guarda en bd
+// Válida y guarda en bd
     @Override
-    public void crearPersonalBodega(PersonalBodegaDTO cuentaPersonal) throws Exception {
+    public void crearPersonalBodega(CrearPersonalBodegaDTO cuentaPersonal) throws Exception {
         if(existeEmail(cuentaPersonal.email())) {
             throw new Exception("El email ya existe");
         }
@@ -40,29 +43,29 @@ public class PersonalBodegaServiceImp implements PersonalBodegaService {
         return personalRepo.findByEmail(email).isPresent();
     }
     private boolean existeCedula(String cedula){
-        return personalRepo.findByCedula(cedula).isPresent();
+        return personalRepo.findById(cedula).isPresent();
+    }
+
+
+    private PersonalBodega buscarPersonalBodegaPorId(String cedula) throws ElementoNoEncontradoException {
+        return personalRepo.findById(cedula)
+                .orElseThrow(() -> new ElementoNoEncontradoException("El cliente con ID " + cedula + " no existe."));
     }
 
     @Override //Buscar por id
     public PersonalBodegaDTO obtenerPersonalBodegaPoId(String id) throws Exception {
-        Optional<PersonalBodega> personalBodega = personalRepo.findById(id);
-        if (personalBodega.isEmpty()) {
-            throw new Exception("No se encontró  personal de bodega con ID: " + id);
-        }
-        return personalMapper.toDTO(personalBodega.get());
+        PersonalBodega personalBodega = buscarPersonalBodegaPorId(id);
+
+        return personalMapper.toDto(personalBodega);
     }
 
     @Override
-    public void actualizarPersonalBodega(PersonalBodegaDTO cuentaPersonal) throws Exception {
-        Optional<PersonalBodega> personalExistente = personalRepo.findById(cuentaPersonal.id());
-        if (personalExistente.isEmpty()) {
-            throw new Exception("No se encontró un personal de bodega con ID: " + cuentaPersonal.id());
-        }
+    public void actualizarPersonalBodega(EditarPersonalBodegaDTO cuentaPersonal) throws Exception {
+        PersonalBodega pb = buscarPersonalBodegaPorId(cuentaPersonal.id());
 
-        //  Actualizar los datos existentes
-        PersonalBodega personalActualizado = personalMapper.toEntity(cuentaPersonal);
-        personalRepo.save(personalActualizado);
+        personalMapper.toEntity(cuentaPersonal, pb);
 
+        personalRepo.save(pb);
     }
 
     @Override
@@ -77,15 +80,9 @@ public class PersonalBodegaServiceImp implements PersonalBodegaService {
     @Override
     public List<PersonalBodegaDTO> listarPersonalBod(int pagina) {
         if(pagina<0) throw new RuntimeException("La página no debe ser menor a 0");
-
-        Pageable pageable = PageRequest.of(pagina, 5);
-        List<PersonalBodega> personalBodegas = personalRepo.findAll(pageable).getContent();
-
-
-        //Pageable=Ordenamiento en consultas a bd
-
+        List<PersonalBodega> personalBodegas = personalRepo.findAll(PageRequest.of(pagina, 5)).getContent();
         return personalBodegas.stream()
-                .map(personalMapper::toDTO)
+                .map(personalMapper::toDto)
                 .toList();
     }
 }

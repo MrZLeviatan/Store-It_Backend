@@ -3,7 +3,7 @@
  * en bd
  */
 
-package co.edu.uniquindio.model.mod;
+package co.edu.uniquindio.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

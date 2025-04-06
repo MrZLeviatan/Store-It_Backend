@@ -3,14 +3,24 @@
  */
 package co.edu.uniquindio.mapper;
 
-import co.edu.uniquindio.dto.PersonalBodegaDTO;
-import co.edu.uniquindio.model.mod.PersonalBodega;
+import co.edu.uniquindio.dto.PersonalBodega.CrearPersonalBodegaDTO;
+import co.edu.uniquindio.dto.PersonalBodega.EditarPersonalBodegaDTO;
+import co.edu.uniquindio.dto.PersonalBodega.PersonalBodegaDTO;
+import co.edu.uniquindio.model.PersonalBodega;
 
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 
-@Component
+@Mapper(componentModel = "spring")
 public interface PersonalBodegaMapper {
-    PersonalBodega toEntity(PersonalBodegaDTO dto);
-    PersonalBodegaDTO toDTO(PersonalBodega entity);
+
+    @Mapping(target = "fechaIngreso", expression = "java(java.time.LocalDate.now())")
+    PersonalBodega toEntity(CrearPersonalBodegaDTO dto);
+
+    PersonalBodegaDTO toDto(PersonalBodega personalBodega);
+
+    void toEntity(EditarPersonalBodegaDTO editarPersonalBodegaDTO, @MappingTarget PersonalBodega personalBodega);
+
 }

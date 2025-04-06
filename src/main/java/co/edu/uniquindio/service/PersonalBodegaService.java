@@ -1,6 +1,8 @@
-package co.edu.uniquindio.service.service;
+package co.edu.uniquindio.service;
 
-import co.edu.uniquindio.dto.PersonalBodegaDTO;
+import co.edu.uniquindio.dto.PersonalBodega.CrearPersonalBodegaDTO;
+import co.edu.uniquindio.dto.PersonalBodega.EditarPersonalBodegaDTO;
+import co.edu.uniquindio.dto.PersonalBodega.PersonalBodegaDTO;
 
 import java.util.List;
 
@@ -11,7 +13,7 @@ public interface PersonalBodegaService {
      *
      * @throws Exception Sí ocurre un error durante la creación.
      */
-    void crearPersonalBodega(PersonalBodegaDTO cuentaPersonal) throws Exception;
+    void crearPersonalBodega(CrearPersonalBodegaDTO cuentaPersonal) throws Exception;
 
 
     /**
@@ -25,9 +27,9 @@ public interface PersonalBodegaService {
 
     /**
      * Actualiza una cuenta existente.
-     * @throws Exception Si la actualización falla o  no existe.
+     * @throws Exception Si la actualización falla o no existe.
      */
-    void actualizarPersonalBodega(PersonalBodegaDTO cuentaPersonal) throws Exception;
+    void actualizarPersonalBodega(EditarPersonalBodegaDTO cuentaPersonal) throws Exception;
 
     /**
      * Elimina un personal de bodega por su ID.
@@ -35,6 +37,7 @@ public interface PersonalBodegaService {
      * @throws Exception Si el personal de bodega no existe o no puede ser eliminado.
      */
     void eliminarPersonalBodega(String id) throws Exception;
+
     /**
      * Obtiene una lista paginada de todo el personal de bodega filtrados por nombre.
      *
