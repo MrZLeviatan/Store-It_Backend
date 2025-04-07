@@ -65,5 +65,4 @@ public class ClienteController {
         List<ClienteDto> lista = clienteServicio.listarTodos(pagina); // Llama al servicio para obtener la lista paginada
         return ResponseEntity.ok(new MensajeDTO<>(false, lista));
     }
-
 }
