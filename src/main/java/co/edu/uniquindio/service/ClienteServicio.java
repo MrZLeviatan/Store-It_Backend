@@ -3,6 +3,7 @@ package co.edu.uniquindio.service;
 import co.edu.uniquindio.dto.Cliente.ClienteDto;
 import co.edu.uniquindio.dto.Cliente.CrearClienteDTO;
 import co.edu.uniquindio.dto.Cliente.EditarClienteDTO;
+import co.edu.uniquindio.dto.Login.LoginDto;
 
 import java.util.List;
 
@@ -49,6 +50,7 @@ public interface ClienteServicio {
      * @return Lista de ClienteDto con los detalles de los clientes.
      */
     List<ClienteDto> listarTodos(int pagina);
+
 
 }
 

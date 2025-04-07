@@ -3,7 +3,10 @@ package co.edu.uniquindio.service.impl;
 import co.edu.uniquindio.dto.Cliente.ClienteDto;
 import co.edu.uniquindio.dto.Cliente.CrearClienteDTO;
 import co.edu.uniquindio.dto.Cliente.EditarClienteDTO;
+import co.edu.uniquindio.dto.Login.LoginDto;
+import co.edu.uniquindio.exception.ElementoIncorrectoException;
 import co.edu.uniquindio.exception.ElementoNoEncontradoException;
+import co.edu.uniquindio.exception.ElementoNulosException;
 import co.edu.uniquindio.exception.ElementoRepetidoException;
 import co.edu.uniquindio.mapper.ClienteMapper;
 import co.edu.uniquindio.model.Cliente;
@@ -101,4 +104,5 @@ public class ClienteServicioImpl implements ClienteServicio {
                 .map(clienteMapper::toDTO)
                 .toList();
     }
+
 }

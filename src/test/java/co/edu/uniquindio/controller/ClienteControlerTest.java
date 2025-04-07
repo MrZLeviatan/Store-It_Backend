@@ -76,6 +76,4 @@ public class ClienteControlerTest {
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk());
     }
-
-
 }
