@@ -1,11 +1,19 @@
 package co.edu.uniquindio.utils;
 
-import co.edu.uniquindio.utils.service.Notify;
-import org.junit.jupiter.api.Test;
 
+import co.edu.uniquindio.dto.EmailDto;
+import co.edu.uniquindio.service.EmailServicio;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
 public class TestEnviarCorreos {
+    @Autowired
+    EmailServicio emailServicio;
+
     @Test
-    public void enviarCorreo() {
+    public void enviarCorreo() throws Exception {
 
         // declaramos el asunto del mensaje
         String asunto= "Prueba de enviar mensaje";
@@ -14,11 +22,6 @@ public class TestEnviarCorreos {
         // declaramos el mensaje
         String mensaje = "hola esto es una prueba ";
         // creamos una instancia de la interfaz Notify que se encuentra en el paquete utils.service
-        Notify notify;
-        //la inicializamos con el constructuro de la clase EnviarMensajeCorreo
-        // y le damos los atributos anteriormente creados
-        notify= new EnviarMensajeCorreo(destinatario,asunto,mensaje);
-        //llamamos el metodo enviar notificacion de la interface y se envia el correo
-        notify.enviarNotificacion();
+        emailServicio.enviarCorreo(new EmailDto(asunto,mensaje,destinatario));
     }
 }

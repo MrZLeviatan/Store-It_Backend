@@ -57,10 +57,8 @@ dependencies {
     annotationProcessor("org.mapstruct:mapstruct-processor:1.6.3")
 
 
-    // 🔹 API de Validación de Jakarta: Proporciona anotaciones para validaciones en beans
-    implementation("jakarta.validation:jakarta.validation-api:3.0.2")
-    // 🔹 Java Mail Sender: Librería para el envío de correos en Java
-    implementation("com.sun.mail:javax.mail:1.6.2")
+    implementation("org.simplejavamail:simple-java-mail:8.12.5")
+    implementation("org.simplejavamail:batch-module:8.12.5")
 
 
     // 🔹 Kotlin Reflection: Soporta reflexión en tiempo de ejecución en Kotlin

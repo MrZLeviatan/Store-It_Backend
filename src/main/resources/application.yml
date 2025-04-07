@@ -1,4 +1,7 @@
+
+
 spring:
+
   datasource:
     url: jdbc:oracle:thin:@localhost:1521/XEPDB1
     username: leviatan
@@ -13,3 +16,9 @@ spring:
   sql:
       init:
         mode: always
+
+smtp:
+  host: smtp.gmail.com
+  port: 587
+  user: prgmonavanzada@gmail.com
+  password: sfkhuwecmnohyvwg
