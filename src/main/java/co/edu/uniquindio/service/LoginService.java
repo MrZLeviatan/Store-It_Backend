@@ -1,7 +1,7 @@
 package co.edu.uniquindio.service;
 
+import co.edu.uniquindio.dto.Cliente.ClienteDto;
 import co.edu.uniquindio.dto.Login.LoginDto;
-
 
 
 public interface LoginService {
@@ -12,7 +12,7 @@ public interface LoginService {
      * @param login Objeto de tipo LoginDto que contiene los datos a registrar.
      * @throws Exception Puede lanzar una excepción si ocurre algún error durante el proceso de registro.
      */
-    int login(LoginDto login) throws Exception;
+    ClienteDto login(LoginDto login) throws Exception;
 
 
 }

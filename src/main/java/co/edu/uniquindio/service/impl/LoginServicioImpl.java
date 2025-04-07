@@ -1,5 +1,6 @@
 package co.edu.uniquindio.service.impl;
 
+import co.edu.uniquindio.dto.Cliente.ClienteDto;
 import co.edu.uniquindio.dto.Login.LoginDto;
 import co.edu.uniquindio.exception.ElementoIncorrectoException;
 import co.edu.uniquindio.exception.ElementoNoEncontradoException;
@@ -19,16 +20,18 @@ import java.util.Optional;
 public class LoginServicioImpl implements LoginService {
 
     private final ClienteRepo clienteRepo;
+    private final ClienteMapper clienteMapper;
+
     private final PersonalBodegaRepository personalBodegaRepo;
 
     @Override
-    public int login(LoginDto login) throws Exception {
+    public ClienteDto login(LoginDto login) throws Exception {
         // Buscar en el repositorio de Cliente
         Optional<Cliente> clienteOptional = clienteRepo.findByEmail(login.email());
         if (clienteOptional.isPresent()) {
             Cliente cliente = clienteOptional.get();
             if (cliente.getPassword().equals(login.password())) {
-                return 1; // CLIENTE
+                return clienteMapper.toDTO(cliente);
             } else {
                 throw new ElementoIncorrectoException("Contraseña incorrecta");
             }
