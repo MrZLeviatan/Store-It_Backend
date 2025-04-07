@@ -36,7 +36,7 @@ dependencies {
     // 🔹 Starter Web de Spring Boot: Proporciona funcionalidades web básicas
     implementation("org.springframework.boot:spring-boot-starter-web")
     // 🔹 Starter de Seguridad de Spring Boot: Agrega funciones de autenticación y seguridad
-    implementation("org.springframework.boot:spring-boot-starter-security")
+    //implementation("org.springframework.boot:spring-boot-starter-security")
 
 
     // 🔹 Hibernate Core: Framework ORM para trabajar con bases de datos en Java

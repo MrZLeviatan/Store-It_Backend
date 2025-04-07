@@ -8,6 +8,7 @@ import co.edu.uniquindio.service.ClienteServicio;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,18 +17,21 @@ import java.util.List;
 @RestController // Indica que esta clase es un controlador REST
 @RequiredArgsConstructor // Genera automáticamente el constructor con los atributos finales (como clienteServicio)
 @RequestMapping("/api/clientes") // Define la ruta base para todos los endpoints de este controlador
-
+@CrossOrigin(origins = "http://localhost:4200") // ✅ Permitir peticiones desde Angular
 //Clase del Cliente Controlador
 public class ClienteController {
 
     private final ClienteServicio clienteServicio; // 🛠 Servicio que contiene la lógica de negocio para clientes
 
+
     // Endpoint para crear un nuevo cliente
     @PostMapping
-    public ResponseEntity<MensajeDTO<String>> crear(@Valid @RequestBody CrearClienteDTO cuenta) throws Exception{
-        clienteServicio.crear(cuenta); // Llama al servicio para crear el cliente
-        return ResponseEntity.status(201).body(new MensajeDTO<>(false, "Su registro ha sido exitoso"));
+    public ResponseEntity<MensajeDTO<String>> crear(@Valid @RequestBody CrearClienteDTO cuenta) throws Exception {
+        clienteServicio.crear(cuenta); // Si lanza excepción, será capturada globalmente
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(new MensajeDTO<>(false, "Su registro ha sido exitoso"));
     }
+
 
     @SecurityRequirement(name = "cookieAuth")  // 🔐 Método protegido (requiere autenticación con cookies)
     @GetMapping("/{id}") // 🔎 Obtiene la información de un cliente por su ID
