@@ -1,3 +1,6 @@
+# Store-IT! - Gestión de Contratos
+
+## Descripción:
 Store-IT! es una plataforma enfocada en el alquiler de espacios de almacenamiento en Colombia, permitiendo a usuarios y empresas arrendar bodegas de manera eficiente. Como parte de su funcionamiento, el módulo CRUD de Contratos es esencial para gestionar los acuerdos de arrendamiento entre los clientes y la empresa.
 El término CRUD hace referencia a las cuatro operaciones fundamentales para el manejo de datos:
 - Create (Crear): Permite registrar un nuevo contrato de arrendamiento, estableciendo los detalles del alquiler, como el período, costos y condiciones.
