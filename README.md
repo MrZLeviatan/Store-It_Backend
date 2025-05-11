@@ -21,3 +21,20 @@ Permite cancelar o eliminar contratos que ya no son válidos o que han sido fina
 La implementación de este módulo representa una herramienta vital para la administración de Store-IT!, ya que centraliza y organiza toda la información relacionada con los contratos de alquiler. Al automatizar y digitalizar estos procesos, se reduce el margen de error, se agilizan los trámites administrativos y se mejora significativamente la experiencia del usuario. Además, se refuerza la transparencia, seguridad y eficiencia operativa en la gestión de los acuerdos comerciales.
 
 En resumen, el módulo de gestión de contratos de Store-IT! no solo contribuye al buen funcionamiento interno de la plataforma, sino que también fortalece la confianza de los clientes al ofrecer un entorno confiable y profesional para el manejo de sus arrendamientos.
+
+## Integración con Otros Módulos del Sistema
+El módulo de gestión de contratos no funciona de manera aislada. Está estrechamente vinculado con otros componentes clave de la plataforma Store-IT!, como:
+
+### Gestión de Clientes: Cada contrato está asociado a un cliente registrado en el sistema, lo que permite mantener una relación clara entre las personas o empresas y los espacios que arriendan.
+
+### Inventario de Bodegas: Al crear un contrato, se reserva automáticamente el espacio seleccionado, evitando duplicaciones y mejorando el control del inventario disponible.
+
+### Pagos y Facturación: El contrato define los términos de pago, lo que permite al sistema generar facturas, realizar seguimientos de pagos pendientes y mantener un historial financiero por cliente.
+
+### Notificaciones: A través de este módulo se pueden configurar alertas automáticas para informar a los usuarios sobre vencimientos próximos, renovaciones o actualizaciones en sus contratos.
+
+## Seguridad y Control de Acceso
+Para garantizar la integridad y confidencialidad de la información contractual, el sistema implementa mecanismos de autenticación y control de acceso por roles. Solo usuarios autorizados pueden realizar operaciones críticas como editar o eliminar contratos, y cada acción queda registrada en un historial de auditoría que permite rastrear cualquier cambio.
+
+## Escalabilidad y Adaptabilidad
+El diseño del módulo ha sido pensado para permitir futuras ampliaciones, como la inclusión de cláusulas personalizadas, anexos digitales, firmas electrónicas y soporte para contratos en múltiples monedas o idiomas. Esto hace que el sistema sea adaptable a las necesidades cambiantes del mercado y a la expansión de la plataforma a otras regiones fuera de Colombia.
