@@ -1,0 +1,46 @@
+components:
+  schemas:
+    Contrato:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        fechaInicio:
+          type: string
+          format: date
+        fechaFin:
+          type: string
+          format: date
+        fechaFirmaCliente:
+          type: string
+          format: date
+        estadoContrato:
+          type: string
+          enum: [ACTIVO,FINALIZADO,CANCELADO,PENDIENTE_VERIFICACION,VERIFICADO_POR_CLIENTE]
+        valor:
+          type: number
+          format: double
+        descripcion:
+          type: string
+        cliente:
+          $ref: '../Users.yaml#/components/schemas/Cliente'
+        agenteVentas:
+          $ref: '../Users.yaml#/components/schemas/AgenteVentas'
+        espacio:
+          $ref: './Espacio.yaml#/components/schemas/Espacio'
+        firmaCliente:
+          type: string
+          format: byte
+          description: Imagen de la firma del cliente (base64)
+        firmaAgenteVentas:
+          type: string
+          format: byte
+          description: Imagen de la firma del agente de ventas (base64)
+        detallesFactura:
+          type: array
+          items:
+            $ref: './DetalleFactura.yaml#/components/schemas/DetalleFactura'
+
+            
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Appender que envía logs en formato JSON a Logstash -->
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>localhost:5044</destination> <!-- Dirección de Logstash -->
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+    </appender>
+
+    <!-- Appender para consola -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Logger raíz -->
+    <root level="INFO">
+        <appender-ref ref="LOGSTASH"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+    <!-- Logger de tu app -->
+    <logger name="com.storeit" level="DEBUG"/>
+
+</configuration>
+

@@ -1,7 +1,7 @@
 package co.edu.uniquindio.controller;
 
 import co.edu.uniquindio.StoreItApplication;
-import co.edu.uniquindio.dto.PersonalBodega.CrearPersonalBodegaDTO;
+import co.edu.uniquindio.dto.users.personalBodega.CrearPersonalBodegaDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.Cookie;
 import org.junit.jupiter.api.Test;
@@ -33,7 +33,7 @@ public class GestionPersonalBodegaTest {
     public void crearPersonalBodegaCorrectoTest() throws Exception {
 
         // 🔹 Crear un DTO con los datos válidos
-        CrearPersonalBodegaDTO dto = new CrearPersonalBodegaDTO(
+        CrearPersonalBodegaDto dto = new CrearPersonalBodegaDto(
                 "PB101",
                 "Carlos",
                 "Ramírez",

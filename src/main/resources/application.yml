@@ -1,24 +1,38 @@
-
-
 spring:
-
   datasource:
     url: jdbc:oracle:thin:@localhost:1521/XEPDB1
-    username: leviatan
-    password: nicolas123
+    username: nicolas281002
+    password: 1234567
     driver-class-name: oracle.jdbc.OracleDriver
+
+  logging:
+    level:
+      org.hibernate.SQL: DEBUG
+      org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
 
   jpa:
     database-platform: org.hibernate.dialect.OracleDialect
     hibernate:
       ddl-auto: update
     show-sql: true
+
   sql:
-      init:
-        mode: always
+    init:
+      mode: always
+
+cloudinary:
+  cloud_name: dehltwwbu
+  api_key: 767958666798121
+  api_secret: 1WMBZSTtsJZ48y6QvhJUEXTFAYY
 
 smtp:
   host: smtp.gmail.com
   port: 587
   user: prgmonavanzada@gmail.com
   password: sfkhuwecmnohyvwg
+
+
+server:
+  address: 0.0.0.0
+

@@ -2,7 +2,7 @@ package co.edu.uniquindio.controller;
 
 
 import co.edu.uniquindio.StoreItApplication;
-import co.edu.uniquindio.dto.Cliente.CrearClienteDTO;
+import co.edu.uniquindio.dto.users.cliente.CrearClienteDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class RegistrarClienteTest {
     public void crearCorrectoTest() throws Exception {
 
         //Se crea un objeto para realizar la creación de la cuenta
-        CrearClienteDTO cuentaDTO = new CrearClienteDTO(
+        CrearClienteDto cuentaDTO = new CrearClienteDto(
                 "103",
                 "Luis Perez",
                 "william@example.com",

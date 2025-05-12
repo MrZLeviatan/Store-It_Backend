@@ -1,0 +1,54 @@
+components:
+  schemas:
+    Bodega:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        ubicacion:
+          uniqueItems:
+            $ref: '../Ubicacion.yaml#/components/schemas/Ubicacion'
+        direccion:
+          type: string
+        fotos:
+          type: array
+          description: Lista de imágenes de la bodega (URLs almacenadas en Cloudinary).
+          items:
+            type: string
+            format: uri
+        telefono:
+          type: string
+        areaTotal:
+          type: object
+          description: Área Total del espacio en metros cuadrados.
+          required:
+            - value
+            - unit
+          properties:
+            value:
+              type: number
+              format: double
+              example: 45.5
+              description: Valor numérico del área total
+            unit:
+              type: string
+              example: m2
+              description: Unidad de medida, por ejemplo 'm2' para metros cuadrados
+        altura:
+          type: integer
+          format: double
+        estadoBodega:
+          type: string
+          enum: [INACTIVA,ACTIVA,OCUPADA]
+        espacios:
+          type: array
+          nullable: true
+          items:
+            $ref: './Espacio.yaml#/components/schemas/Espacio'
+        personalBodega:
+          type: array
+          nullable: false
+          items:
+            $ref: '../Users.yaml#/components/schemas/PersonalBodega'
+

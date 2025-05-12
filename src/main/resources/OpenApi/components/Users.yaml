@@ -1,0 +1,135 @@
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        estadoCuenta:
+          type: string
+          enum: [ACTIVA,INACTIVA,ELIMINADA]
+        codigoValidacion:
+          type: string
+
+    Persona:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        nombre:
+          type: string
+        telefono:
+          type: string
+        telefonoSecundario:
+          type: string
+          nullable: true
+        imagenPerfil:
+          type: string
+          description: URL de la imagen de perfil de la persona almacenada en Cloudinary
+        user:
+          $ref: "#/components/schemas/User"
+
+    Cliente:
+      allOf:
+        - $ref: '#/components/schemas/Persona'
+        - type: object
+          properties:
+            ubicacion:
+              uniqueItems:
+                $ref: "./Ubicacion.yaml#/components/schemas/Ubicacion"
+            tipoCliente:
+              type: string
+              enum: [ PERSONA_NATURAL,EMPRESA ]
+            contratos:
+              type: array
+              nullable: true
+              items:
+                $ref: './objects/Contrato.yaml#/components/schemas/Contrato'
+            facturas:
+              type: array
+              nullable: true
+              items:
+                $ref: './objects/Facturas.yaml#/components/schemas/Factura'
+            productos:
+              type: array
+              nullable: true
+              items:
+                $ref: './objects/Producto.yaml#/components/schemas/Producto'
+
+
+    datosLaborales:
+      type: object
+      properties:
+        fechaContratacion:
+          type: string
+          format: date
+        fechaFinContratacion:
+          type: string
+          format: date
+        sueldo:
+          type: number
+          format: double
+        emailEmpresarial:
+          type: string
+          format: email
+        tipoContrato:
+          type: string
+          enum: [FIJO,TEMPORAL,PRESTACION_SERVICIOS]
+        estadoContratoLaboral:
+          type: string
+          enum: [ACTIVO,SUSPENDIDO,FINALIZADO]
+
+
+    AgenteVentas:
+      allOf:
+        - $ref: '#/components/schemas/Persona'
+        - type: object
+          properties:
+            datosLaborales:
+              uniqueItems:
+                $ref: '#/components/schemas/datosLaborales'
+            sede:
+              uniqueItems:
+                $ref: './objects/Sede.yaml#/components/schemas/Sede'
+            contratos:
+              type: array
+              nullable: true
+              items:
+                $ref: './objects/Contrato.yaml#/components/schemas/Contrato'
+
+
+    RecursosHumanos:
+      allOf:
+        - $ref: '#/components/schemas/Persona'
+        - type: object
+          properties:
+            datosLaborales:
+              uniqueItems:
+                $ref: '#/components/schemas/datosLaborales'
+            sede:
+              uniqueItems:
+                $ref: './objects/Sede.yaml#/components/schemas/Sede'
+
+    PersonalBodega:
+      allOf:
+        - $ref: '#/components/schemas/Persona'
+        - type: object
+          properties:
+            datosLaborales:
+              uniqueItems:
+                $ref: '#/components/schemas/datosLaborales'
+            bodega:
+              uniqueItems:
+                $ref: './objects/Bodega.yaml#/components/schemas/Bodega'
+            movimientos:
+              type: array
+              nullable: true
+              items:
+                $ref: './objects/Movimiento.yaml#/components/schemas/Movimiento'
+            tipoCargo:
+              type: string
+              enum: [ENCARGADO,OPERARIO,PASANTE]

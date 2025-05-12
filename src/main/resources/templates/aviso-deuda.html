@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            margin: 60px;
+            color: #000;
+        }
+        h1 {
+            text-align: center;
+            font-size: 20pt;
+            text-transform: uppercase;
+            text-decoration: underline;
+            margin-bottom: 30px;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            width: 100px;
+        }
+        .encabezado {
+            text-align: center;
+            font-size: 10pt;
+            margin-bottom: 40px;
+        }
+        .datos {
+            margin-bottom: 30px;
+        }
+        .dato-label {
+            font-weight: bold;
+        }
+        .mensaje {
+            text-align: justify;
+            line-height: 1.6;
+        }
+        .firma {
+            margin-top: 50px;
+        }
+        .firma p {
+            margin: 0;
+        }
+        .firma strong {
+            font-size: 11pt;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Logo y encabezado -->
+<div class="logo">
+    <img src="https://res.cloudinary.com/dehltwwbu/image/upload/v1745107200/assets_task_01js87pt2kf1wtk7aw2n5b5dy8_img_0_q4tyju.webp" alt="Store-It Logo">
+</div>
+
+<div class="encabezado">
+    <p><strong>Store-It S.A.S</strong></p>
+    <p>NIT Aun No</p>
+    <p>Carrera 45 # 12-34, Bogotá D.C., Colombia</p>
+    <p>contacto@store-it.com | Tel: +57 300 123 4567</p>
+</div>
+
+<!-- Título -->
+<h1>Aviso de Cancelación de Contrato y Cobro Pendiente</h1>
+
+<!-- Datos del cliente y contrato -->
+<div class="datos">
+    <p><span class="dato-label">Fecha del aviso:</span> <span th:text="${fechaActual}"></span></p>
+    <p><span class="dato-label">Cliente:</span> <span th:text="${contratoCancelado.getCliente().getNombre()}"></span></p>
+    <p><span class="dato-label">Correo electrónico:</span> <span th:text="${contratoCancelado.getCliente().getUser().getEmail()}"></span></p>
+    <p><span class="dato-label">Número de contrato:</span> <span th:text="${contratoCancelado.getId()}"></span></p>
+    <p><span class="dato-label">Monto pendiente a cancelar:</span> <span th:text="${montoTotal}"></span></p>
+    <p><span class="dato-label">Fecha límite de pago:</span> <span th:text="${fechaPago}"></span></p>
+</div>
+
+<!-- Mensaje formal -->
+<div class="mensaje">
+    Por medio del presente comunicado, nos permitimos informarle que su contrato suscrito con Store-It ha sido cancelado y presenta un saldo pendiente por el valor anteriormente indicado. Conforme a las políticas de la empresa, usted dispone hasta la fecha límite mencionada para realizar el pago correspondiente.
+
+    <br><br>
+    El incumplimiento de este compromiso podría acarrear acciones legales o el reporte ante centrales de riesgo crediticio, conforme a la normativa vigente en Colombia. Le recomendamos gestionar su situación financiera a la mayor brevedad posible para evitar consecuencias adicionales.
+
+    <br><br>
+    Si usted ya realizó el pago, le solicitamos hacer caso omiso de este mensaje. En caso contrario, puede comunicarse con nuestro equipo de atención al cliente para resolver cualquier inquietud o realizar acuerdos de pago si lo requiere.
+</div>
+
+<!-- Firma -->
+<div class="firma">
+    <p>Sin otro particular,</p>
+    <br><br>
+    <p><strong>Dirección Administrativa</strong></p>
+    <p><strong>Store-It S.A.S</strong></p>
+    <p>contacto@store-it.com</p>
+    <p>+57 300 123 4567</p>
+</div>
+
+</body>
+</html>

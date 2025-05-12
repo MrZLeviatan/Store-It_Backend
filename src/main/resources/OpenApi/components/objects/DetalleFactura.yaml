@@ -1,0 +1,15 @@
+components:
+  schemas:
+    DetalleFactura:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        factura:
+          $ref: './Facturas.yaml#/components/schemas/Factura'
+        contrato:
+          $ref: './Contrato.yaml#/components/schemas/Contrato'
+        valor:
+          type: number
+          format: double

@@ -1,7 +1,7 @@
 package co.edu.uniquindio.controller;
 
 import co.edu.uniquindio.StoreItApplication;
-import co.edu.uniquindio.dto.Cliente.EditarClienteDTO;
+import co.edu.uniquindio.dto.users.cliente.EditarClienteDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.Cookie;
 import org.junit.jupiter.api.*;
@@ -31,7 +31,7 @@ public class ClienteControlerTest {
     @Test
     public void actualizarTest() throws Exception {
 
-        EditarClienteDTO cuentaDTO = new EditarClienteDTO(
+        EditarClienteDto cuentaDTO = new EditarClienteDto(
                 "1001330212",
                 "Nicolas Cabrera"
         );

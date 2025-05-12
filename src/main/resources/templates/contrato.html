@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <style>
+        body {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            margin: 60px;
+            color: #000;
+        }
+        h1 {
+            text-align: center;
+            font-size: 20pt;
+            text-transform: uppercase;
+            text-decoration: underline;
+            margin-bottom: 30px;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            width: 100px;
+        }
+        .encabezado {
+            text-align: center;
+            font-size: 10pt;
+            margin-bottom: 40px;
+        }
+        .datos {
+            margin-bottom: 30px;
+        }
+        .dato-label {
+            font-weight: bold;
+        }
+        .mensaje {
+            text-align: justify;
+            line-height: 1.6;
+        }
+        .firma {
+            margin-top: 50px;
+        }
+        .firma p {
+            margin: 0;
+        }
+        .firma strong {
+            font-size: 11pt;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Logo y encabezado -->
+<div class="logo">
+    <img src="https://res.cloudinary.com/dehltwwbu/image/upload/v1745107200/assets_task_01js87pt2kf1wtk7aw2n5b5dy8_img_0_q4tyju.webp" alt="Store-It Logo"/>
+</div>
+
+<h1>Contrato de Arrendamiento de Espacio de Bodega</h1>
+
+<div class="contract-text">
+    <p>En la ciudad de <span th:text="${espacio.bodega.ubicacion.getCiudad()}"/> a la fecha de <span th:text="${contrato.fechaFirmaCliente}"/>, se suscribe el presente contrato de arrendamiento entre el señor(a) <strong><span th:text="${arrendador.nombre}"/></strong>, en calidad de <strong>ARRENDADOR</strong>, y el señor(a) <strong><span th:text="${arrendatario.nombre}"/></strong>, en calidad de <strong>ARRENDATARIO</strong>, quienes acuerdan las siguientes estipulaciones:</p>
+
+    <p><strong>Primera - Objeto:</strong> El ARRENDADOR da en arrendamiento al ARRENDATARIO un espacio de almacenamiento identificado con el código <strong><span th:text="${espacio.id}"/></strong>, cuya área total es de <strong><span th:text="${espacio.areaTotal}"/> metros cuadrados</strong>, ubicado en las instalaciones de la empresa Store-It.</p>
+
+    <p><strong>Segunda - Valor y Forma de Pago:</strong> El canon mensual de arrendamiento será de <strong>$<span th:text="${contrato.valor}"/></strong>, suma que el ARRENDATARIO se obliga a pagar anticipadamente y sin requerimiento previo, a más tardar el día <span th:text="${diaPago}"/> de cada mes, mediante los medios habilitados por el ARRENDADOR.</p>
+
+    <p><strong>Tercera - Duración:</strong> El presente contrato tendrá una vigencia de <strong><span th:text="${duracion}"/> meses</strong>, iniciando el día <span th:text="${contrato.fechaInicio}"/> y finalizando el día <span th:text="${contrato.fechaFin}"/>. Podrá ser renovado previo acuerdo escrito entre las partes con una antelación mínima de quince (15) días al vencimiento.</p>
+
+    <p><strong>Cuarta - Obligaciones del ARRENDATARIO:</strong> El ARRENDATARIO se compromete a:
+    <ul>
+        <li>Mantener el espacio arrendado en condiciones adecuadas de uso y limpieza.</li>
+        <li>No realizar modificaciones al espacio sin autorización escrita del ARRENDADOR.</li>
+        <li>Utilizar el espacio solo para almacenamiento, sin subarrendar.</li>
+        <li>Registrar entradas y salidas en el sistema, usando los códigos de ubicación asignados.</li>
+    </ul>
+    </p>
+
+    <p><strong>Quinta - Obligaciones del ARRENDADOR:</strong> El ARRENDADOR se compromete a:
+    <ul>
+        <li>Entregar el espacio en condiciones aptas.</li>
+        <li>Garantizar el acceso durante la vigencia del contrato.</li>
+        <li>Proporcionar acceso al sistema de gestión de bodegas.</li>
+        <li>Emitir facturación mensual y enviarla al ARRENDATARIO.</li>
+    </ul>
+    </p>
+
+    <p><strong>Sexta - Terminación Anticipada:</strong> En caso de que cualquiera de las partes desee dar por terminado el presente contrato antes del plazo estipulado, deberá notificarlo por escrito a la otra parte con una antelación no inferior a veinte (20) días calendario. En caso de que la terminación anticipada sea solicitada por el ARRENDATARIO, este deberá cancelar una penalización equivalente a <span th:text="${penalizacion}"/>.</p>
+
+    <p><strong>Séptima - Entrada en Vigencia:</strong> El presente contrato entrará en vigor a partir de la fecha de la firma del mismo por ambas partes, quienes declaran haber leído, comprendido y aceptado íntegramente su contenido.</p>
+</div>
+
+<div class="contract-section">
+    <h3>Cláusulas Adicionales</h3>
+    <p><strong>1. Objeto:</strong> Se reitera que el objeto del presente contrato es el arrendamiento del espacio descrito, el cual se destinará exclusivamente a uso de bodega.</p>
+    <p><strong>2. Duración:</strong> El contrato tiene una duración de <span th:text="${duracion}"/> meses, con inicio el <span th:text="${contrato.fechaInicio}"/> y término el <span th:text="${contrato.fechaFin}"/>.</p>
+    <p><strong>3. Valor del Arrendamiento:</strong> El arrendatario pagará al arrendador la suma mensual de $<span th:text="${contrato.valor}"/>, dentro de los primeros <span th:text="${diaPago}"/> días de cada mes.</p>
+    <p><strong>4. Uso y Cuidado del Inmueble:</strong> El arrendatario se obliga a no alterar la estructura del espacio ni a permitir que terceros hagan uso del mismo sin autorización.</p>
+    <p><strong>5. Prohibiciones:</strong> Queda expresamente prohibido el subarrendamiento, el depósito de sustancias peligrosas y cualquier actividad que implique riesgo o contravenga normas legales.</p>
+    <p><strong>6. Causales de Terminación:</strong> El incumplimiento de cualquiera de las obligaciones aquí pactadas constituirá causa suficiente para la terminación unilateral del contrato, sin perjuicio de las acciones legales a que haya lugar.</p>
+    <p><strong>7. Fuerza Mayor:</strong> Ninguna de las partes será responsable por el incumplimiento de sus obligaciones contractuales cuando este sea consecuencia de causas de fuerza mayor o caso fortuito, debidamente comprobadas.</p>
+</div>
+
+<div class="signature-section">
+    <p><strong>Firmado por las partes:</strong></p>
+    <div>
+        <p>Firma del ARRENDADOR:</p>
+        <img th:if="${firmaAgente != null}" th:src="${firmaAgente}" alt="Firma del Arrendador" style="height:80px;"/>
+        <p>Firma del ARRENDATARIO:</p>
+        <img th:if="${firmaCliente != null}" th:src="${firmaCliente}" alt="Firma del Arrendatario" style="height:80px;"/>
+    </div>
+    <p><strong>Fecha de firma:</strong> <span th:text="${contrato.fechaFirmaCliente}"/></p>
+</div>
+
+</body>
+</html>
+

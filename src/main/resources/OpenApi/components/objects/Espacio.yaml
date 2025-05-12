@@ -1,0 +1,63 @@
+components:
+  schemas:
+    Espacio:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        contrato:
+          uniqueItems:
+            $ref: './Contrato.yaml#/components/schemas/Contrato'
+        areaTotal:
+          type: object
+          description: Área Total del espacio en metros cuadrados.
+          required:
+            - value
+            - unit
+          properties:
+            value:
+              type: number
+              format: double
+              example: 45.5
+              description: Valor numérico del área total
+            unit:
+              type: string
+              example: m2
+              description: Unidad de medida, por ejemplo 'm2' para metros cuadrados
+        areaDisponible:
+          type: object
+          description: Área Disponible del espacio en metros cuadrados.
+          required:
+            - value
+            - unit
+          properties:
+            value:
+              type: number
+              format: double
+              example: 45.5
+              description: Valor numérico del área total
+            unit:
+              type: string
+              example: m2
+              description: Unidad de medida, por ejemplo 'm2' para metros cuadrados
+        altura:
+          type: integer
+          format: double
+        estadoEspacio:
+          type: string
+          enum: [LIBRE,CONTRATADO_DISPONIBLE,CONTRATADO_LLENO,INACTIVO]
+        bodega:
+          uniqueItems:
+            $ref: './Bodega.yaml#/components/schemas/Bodega'
+        productos:
+          type: array
+          nullable: true
+          items:
+            $ref: './Producto.yaml#/components/schemas/Producto'
+        movimientos:
+          type: array
+          nullable: true
+          items:
+            $ref: './Movimiento.yaml#/components/schemas/Movimiento'
+

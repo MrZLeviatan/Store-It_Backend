@@ -1,0 +1,49 @@
+components:
+  schemas:
+    Producto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        nombre:
+          type: string
+        descripcion:
+          type: string
+        areaOcupada:
+          type: object
+          description: Área Ocupada del producto
+          required:
+            - value
+            - unit
+          properties:
+            value:
+              type: number
+              format: double
+              example: 45.5
+              description: Valor numérico del área del producto
+            unit:
+              type: string
+              example: m2
+              description: Unidad de medida, por ejemplo 'm2' para metros cuadrados
+        altura:
+          type: integer
+          format: double
+        tipoProducto:
+          type: string
+          enum: [FRAGIL,NO_FRAGIL]
+        estadoProducto:
+          type: string
+          enum: [EN_BODEGA,RETIRADO]
+        espacio:
+          uniqueItems:
+            $ref: './Espacio.yaml#/components/schemas/Espacio'
+        cliente:
+          uniqueItems:
+            $ref: '../Users.yaml#/components/schemas/Cliente'
+        historialMovimientos:
+          type: array
+          nullable: false
+          items:
+            $ref: './Movimiento.yaml#/components/schemas/Movimiento'
+

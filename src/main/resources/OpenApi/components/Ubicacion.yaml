@@ -1,0 +1,13 @@
+components:
+  schemas:
+    Ubicacion:
+      type: object
+      properties:
+        pais:
+          type: string
+        ciudad:
+          type: string
+        latitud:
+          type: string
+        longitud:
+          type: string
