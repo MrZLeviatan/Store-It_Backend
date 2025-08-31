@@ -15,7 +15,7 @@ description =  "Firma ROT5:  QwE Pjanfyfr(Nicolas Cabrera Serrano)"
 java {
     toolchain {
         // 🔹 Define la versión de Java a utilizar (Java 21)
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(22)
     }
 }
 
